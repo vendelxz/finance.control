@@ -1,0 +1,154 @@
+/* Layout Base */
+.layout-app {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+.sidebar {
+    width: 250px;
+    background-color: var(--cor-primaria);
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.nav-btn:hover, .nav-btn.ativo {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid white;
+}
+
+.sidebar-footer {
+    padding: 1rem;
+}
+
+.btn-sair {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+.btn-sair:hover {
+    background-color: rgba(255, 107, 107, 0.1);
+    border-left: 4px solid #ff6b6b;
+}
+
+/* Área Principal de Conteúdo */
+.conteudo-principal {
+    flex: 1;
+    background-color: var(--cor-fundo);
+    overflow-y: auto;
+    padding: 2rem;
+}
+
+.topbar {
+    margin-bottom: 2rem;
+}
+
+
+.secao {
+    display: none; 
+}
+.secao.ativa {
+    display: block; 
+}
+
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.card.destaque {
+    background-color: var(--cor-primaria);
+    color: white;
+}
+
+.card h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    opacity: 0.8;
+}
+
+.valor {
+    font-size: 2rem;
+    font-weight: bold;
+}
+.valor.positivo { color: #2ecc71; }
+.valor.negativo { color: #e74c3c; }
+
+/* Tabela de Transações */
+.acoes-tabela {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-primario {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--cor-primaria);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primario:hover {
+    background-color: #002233;
+}
+
+.tabela-transacoes {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.tabela-transacoes th, .tabela-transacoes td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.tabela-transacoes th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
