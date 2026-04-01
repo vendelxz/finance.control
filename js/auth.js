@@ -25,7 +25,7 @@ formLogin.addEventListener('submit', async (evento) => {
             
             //Guardar o token para navegar nas requisições da API posteriormente...
             localStorage.setItem('token', dados.token);
-            window.location.href = 'index.html'; 
+            window.location.href = '/index.html'; 
         } else {
             // Se devolver 403, 404, etc.
             alert('Credenciais inválidas. Por favor, tente novamente.');
