@@ -28,21 +28,28 @@
 }
 
 .nav-btn {
-    background: none;
+    background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.5); 
     padding: 1rem 1.5rem;
     text-align: left;
     font-size: 1rem;
     cursor: pointer;
-    transition: 0.3s;
     width: 100%;
+    
+    border-left: 4px solid transparent; 
+    transition: all 0.3s ease;
 }
 
 .nav-btn:hover, .nav-btn.ativo {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-left: 4px solid white;
+    color: #ffffff;
+    background-color: rgba(0, 229, 255, 0.05); 
+    
+    border-left: 4px solid #00e5ff; 
+    
+    box-shadow: inset 15px 0 20px -15px rgba(0, 229, 255, 0.5);
+    
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4); 
 }
 
 .sidebar-footer {
@@ -50,12 +57,26 @@
 }
 
 .btn-sair {
-    color: #ff6b6b;
-    font-weight: bold;
+    background-color: transparent;
+    color: #ff3333; 
+    border: 2px solid #ff3333;
+    border-radius: 8px;
+    text-align: center; 
+    font-weight: 700;
+    letter-spacing: 2px;
+    
+    box-shadow: 0 0 8px rgba(255, 51, 51, 0.3), inset 0 0 8px rgba(255, 51, 51, 0.2);
+    transition: all 0.3s ease;
 }
+
 .btn-sair:hover {
-    background-color: rgba(255, 107, 107, 0.1);
-    border-left: 4px solid #ff6b6b;
+    background-color: #ff3333 !important; 
+    color: white !important;
+    border: 2px solid #ff3333 !important; 
+    
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.8), 0 0 30px rgba(255, 51, 51, 0.5);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.6); /* Brilho na letra */
+    transform: translateY(-2px); 
 }
 
 /* Área Principal de Conteúdo */
@@ -119,18 +140,29 @@
 }
 
 .btn-primario {
-    padding: 0.75rem 1.5rem;
-    background-color: var(--cor-primaria);
+    padding: 0.75rem 1.8rem;
+    background: linear-gradient(135deg, var(--cor-primaria), #005f8c);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px; 
     font-size: 1rem;
+    font-weight: 600; 
     cursor: pointer;
-    transition: background-color 0.3s;
+    
+    box-shadow: 0 4px 6px rgba(0, 59, 87, 0.2); 
+    transition: all 0.3s ease; 
 }
 
 .btn-primario:hover {
-    background-color: #002233;
+    background: linear-gradient(135deg, #004b6e, #0077b5);
+    
+    box-shadow: 0 6px 12px rgba(0, 59, 87, 0.4); 
+    transform: translateY(-2px); 
+}
+
+.btn-primario:active {
+    transform: translateY(0); 
+    box-shadow: 0 2px 4px rgba(0, 59, 87, 0.2);
 }
 
 .tabela-transacoes {
@@ -151,4 +183,100 @@
 .tabela-transacoes th {
     background-color: #f8f9fa;
     font-weight: 600;
+}
+
+/* --- Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    max-height: 90vh; /* O cartão pode crescer até 90% da altura da tela */
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    margin-bottom: 1.5rem;
+    color: var(--cor-primaria);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-cancelar {
+    background: none;
+    border: 1px solid var(--cor-borda);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--cor-texto-claro);
+}
+
+.btn-cancelar:hover {
+    background-color: #f4f4f4;
+}
+
+.tabela-transacoes td {
+    font-size: 1.05rem; /* Aumenta um bocadinho o tamanho base */
+    font-weight: 500;   /* Dá mais destaque à fonte */
+    color: #222222;     /* Escurece o texto */
+}
+
+.texto-positivo {
+    color: #2ecc71 !important;
+    font-weight: 700 !important;
+}
+
+.texto-negativo {
+    color: #e74c3c !important;
+    font-weight: 700 !important;
+}
+
+.input-group {
+    margin-bottom: 1.2rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    color: var(--cor-texto);
+}
+
+/* O segredo para deixar inputs e selects com o mesmo tamanho e design */
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: white;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
 }

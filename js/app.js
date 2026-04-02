@@ -42,3 +42,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+document.addEventListener('DOMContentLoaded', () => {
+    
+    if (localStorage.getItem('tema') === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+    }
+
+    const btnTema = document.getElementById('btn-tema');
+    
+    if (btnTema) {
+        if (localStorage.getItem('tema') === 'dark') {
+            btnTema.innerHTML = '☀️ Claro';
+        }
+
+        btnTema.addEventListener('click', () => {
+            const temaEscuroAtivo = document.body.getAttribute('data-theme') === 'dark';
+            
+            if (temaEscuroAtivo) {
+                document.body.removeAttribute('data-theme');
+                localStorage.setItem('tema', 'light');
+                btnTema.innerHTML = '🌙 Escuro';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('tema', 'dark');
+                btnTema.innerHTML = '☀️ Claro';
+            }
+        });
+    }
+});

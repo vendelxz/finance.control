@@ -12,20 +12,21 @@
     <div class="layout-app">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h2>Financeiro</h2>
+                <h2>Dashboard</h2>
             </div>
             <nav class="sidebar-nav">
                 <button class="nav-btn ativo" id="btn-dashboard">📊 Visão Geral</button>
                 <button class="nav-btn" id="btn-transacoes">💸 Transações</button>
             </nav>
             <div class="sidebar-footer">
-                <button class="nav-btn btn-sair" id="btn-logout">Sair 🚪</button>
+                <button class="nav-btn btn-sair" id="btn-logout">SAIR</button>
             </div>
         </aside>
 
         <main class="conteudo-principal">
-            <header class="topbar">
+            <header class="topbar" style="display: flex; justify-content: space-between; align-items: center;">
                 <h1 id="titulo-pagina">Visão Geral</h1>
+                <button id="btn-tema" class="btn-tema">🌙 Escuro</button>
             </header>
 
             <section id="secao-dashboard" class="secao ativa">
@@ -56,20 +57,80 @@
                             <th>Data</th>
                             <th>Descrição</th>
                             <th>Categoria</th>
+                            <th>Método de Pagamento</th>
                             <th>Valor</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody id="corpo-tabela">
                         <tr>
-                            <td colspan="5" style="text-align: center;">Carregando suas transações...</td>
+                            <td colspan="6" style="text-align: center;">Carregando suas transações...</td>
                         </tr>
                     </tbody>
                 </table>
             </section>
         </main>
+        <div id="modal-transacao" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2>Nova Transação</h2>
+            <form id="form-transacao">
+                
+                <div class="input-group">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" id="descricao" required placeholder="Ex: Conta de Luz">
+                </div>
+
+                <div class="input-group">
+                    <label for="valor">Valor (R$)</label>
+                   <input type="number" id="valor" step="0.01" min="0.00" required placeholder="0.00">
+                </div>
+
+                <div class="input-group">
+                    <label for="metodoPagamento">Método de Pagamento</label>
+                    <select id="metodoPagamento" required>
+                        <option value="" disabled selected>Selecione um método...</option>
+                        <option value="PIX">Pix</option>
+                        <option value="CARTAO_CREDITO">Cartão de Crédito</option>
+                        <option value="CARTAO_DEBITO">Cartão de Débito</option>
+                        <option value="DINHEIRO">Dinheiro</option>
+                        <option value="CHEQUE">Cheque</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="data">Data</label>
+                    <input type="date" id="data" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" required>
+                        <option value="" disabled selected>Selecione uma categoria...</option>
+                        <option value="ALIMENTACAO">Alimentação</option>
+                        <option value="LAZER">Lazer</option>
+                        <option value="CONTAS">Contas</option>
+                        <option value="SALARIO">Salário</option>
+                        <option value="OUTROS">Outros</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="tipo">Tipo</label>
+                    <select id="tipo" required>
+                        <option value="RECEITA">Receita</option>
+                        <option value="DESPESA">Despesa</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancelar" id="btn-cancelar-transacao">Cancelar</button>
+                    <button type="submit" class="btn-primario">Salvar</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="js/app.js"></script>
+    <script src="js/transacoes.js"></script>
 </body>
 </html>

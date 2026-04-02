@@ -18,3 +18,119 @@ body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
 }
+
+[data-theme="dark"] {
+    --cor-fundo: #121212;
+    --cor-cartao: #1e1e1e;
+    --cor-texto: #e0e0e0;
+    --cor-texto-claro: #aaaaaa;
+    --cor-borda: #333333;
+    --cor-tabela-hover: #2a2a2a;
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] .conteudo-principal {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] label {
+    color: var(--cor-texto);
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .tabela-transacoes,
+[data-theme="dark"] .input-group input,
+[data-theme="dark"] .input-group select {
+    background-color: var(--cor-cartao);
+    color: var(--cor-texto);
+    border-color: var(--cor-borda);
+}
+
+
+[data-theme="dark"] .tabela-transacoes th {
+    background-color: var(--cor-tabela-hover);
+    color: var(--cor-texto);
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+[data-theme="dark"] .tabela-transacoes td {
+    border-bottom: 1px solid var(--cor-borda);
+    color: var(--cor-texto);
+}
+
+.btn-tema {
+    background-color: transparent;
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+}
+
+.btn-tema:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .btn-tema:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+[data-theme="dark"] .sidebar {
+    background-color: var(--cor-cartao); /* Fica com o mesmo cinza escuro dos cards */
+    border-right: 1px solid var(--cor-borda); /* Cria uma linha sutil para separar do conteúdo */
+}
+
+[data-theme="dark"] .sidebar-header {
+    border-bottom: 1px solid var(--cor-borda);
+}
+[data-theme="dark"] .card.destaque {
+    background-color: var(--cor-cartao); /* Fundo cinza escuro igual aos outros cards */
+    border: 1px solid #00e5ff; /* Borda ciano neon para manter o destaque */
+    box-shadow: inset 0 0 15px rgba(0, 229, 255, 0.05), 0 4px 8px rgba(0, 0, 0, 0.3); /* Brilho suave */
+}
+
+[data-theme="dark"] .card.destaque h3 {
+    color: var(--cor-texto-claro);
+}
+
+[data-theme="dark"] .card.destaque #valor-saldo {
+    color: #00e5ff; /* O número fica brilhante e tecnológico */
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+/* --- Card de Receitas (Verde Neon) no Tema Escuro --- */
+[data-theme="dark"] .cards-grid .card:nth-child(1) {
+    border: 1px solid #2ecc71;
+    box-shadow: inset 0 0 15px rgba(46, 204, 113, 0.05), 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .cards-grid .card:nth-child(1) h3 {
+    color: var(--cor-texto-claro);
+}
+[data-theme="dark"] #valor-receitas {
+    color: #2ecc71;
+    text-shadow: 0 0 8px rgba(46, 204, 113, 0.4);
+}
+
+/* --- Card de Despesas (Vermelho Neon) no Tema Escuro --- */
+[data-theme="dark"] .cards-grid .card:nth-child(2) {
+    border: 1px solid #ff4d4d; /* Um vermelho um pouco mais vibrante para o escuro */
+    box-shadow: inset 0 0 15px rgba(255, 77, 77, 0.05), 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .cards-grid .card:nth-child(2) h3 {
+    color: var(--cor-texto-claro);
+}
+[data-theme="dark"] #valor-despesas {
+    color: #ff4d4d;
+    text-shadow: 0 0 8px rgba(255, 77, 77, 0.4);
+}
