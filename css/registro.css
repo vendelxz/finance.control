@@ -7,3 +7,38 @@
 .input-group {
     margin-bottom: 1rem; 
 }
+[data-theme="dark"] .registro-card {
+    background-color: var(--cor-cartao);
+    border: 1px solid var(--cor-borda);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .registro-card h2,
+[data-theme="dark"] .input-group label {
+    color: var(--cor-texto);
+}
+
+[data-theme="dark"] .registro-card p {
+    color: var(--cor-texto-claro);
+}
+
+[data-theme="dark"] .input-group input {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    border-color: var(--cor-borda);
+}
+
+/* Brilho Ciano Neon ao clicar no input para digitar */
+[data-theme="dark"] .input-group input:focus {
+    border-color: #00e5ff;
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+/* Links em Ciano Neon */
+[data-theme="dark"] .links-uteis a {
+    color: #00e5ff;
+}
+
+[data-theme="dark"] .links-uteis a:hover {
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
