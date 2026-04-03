@@ -163,3 +163,89 @@ body.anima-tema {
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 59, 87, 0.2);
 }
+
+/* =========================================
+   ÁREA DE FILTROS (MÊS E ANO)
+   ========================================= */
+.filtros-container {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.filtro-card {
+    background-color: var(--cor-cartao);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--cor-borda);
+    flex: 1;
+    min-width: 200px;
+}
+
+.filtro-card label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: var(--cor-texto-claro);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.filtro-card select {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+}
+
+
+.btn-neon-roxo {
+    padding: 1.1rem 2rem;
+    background: transparent;
+    color: #b829ea; /* Roxo Neon */
+    border: 2px solid #b829ea;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(184, 41, 234, 0.2);
+}
+
+.btn-neon-roxo:hover {
+    background-color: #b829ea;
+    color: white;
+    box-shadow: 0 0 20px rgba(184, 41, 234, 0.6), inset 0 0 10px rgba(0,0,0,0.2);
+    text-shadow: 0 0 5px rgba(255,255,255,0.8);
+}
+
+[data-theme="dark"] .neon-table {
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 8px;
+    overflow: hidden; 
+}
+
+[data-theme="dark"] .neon-table th {
+    background-color: rgba(0, 229, 255, 0.05);
+    color: #00e5ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(0, 229, 255, 0.5);
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+[data-theme="dark"] .neon-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .neon-table tbody tr:hover {
+    background-color: rgba(184, 41, 234, 0.1); 
+    box-shadow: inset 0 0 10px rgba(184, 41, 234, 0.2);
+}

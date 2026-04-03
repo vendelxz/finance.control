@@ -1,149 +1,212 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // CORREÇÃO 1: Chamar a função assim que a página carrega!
-    carregarTransacoes(); 
+    inicializarFiltrosDatas();
+    buscarTransacoesPorFiltro();
+
+    const btnBuscar = document.getElementById('btn-buscar-filtros');
+    if (btnBuscar) {
+        btnBuscar.addEventListener('click', buscarTransacoesPorFiltro);
+    }
 
     const modal = document.getElementById('modal-transacao');
     const btnNovaTransacao = document.getElementById('btn-nova-transacao');
     const btnCancelar = document.getElementById('btn-cancelar-transacao');
     const formTransacao = document.getElementById('form-transacao');
 
-    btnNovaTransacao.addEventListener('click', () => {
-        modal.style.display = 'flex';
-    });
+    if (btnNovaTransacao) {
+        btnNovaTransacao.addEventListener('click', () => modal.style.display = 'flex');
+    }
 
-    btnCancelar.addEventListener('click', () => {
-        modal.style.display = 'none';
-        formTransacao.reset(); 
-    });
+    if (btnCancelar) {
+        btnCancelar.addEventListener('click', () => {
+            modal.style.display = 'none';
+            formTransacao.reset(); 
+        });
+    }
 
-    formTransacao.addEventListener('submit', async (evento) => {
-        evento.preventDefault();
-        const token = localStorage.getItem('token'); 
-
-        // Monta o objeto DTO
-        const transacaoDTO = {
-            descricao: document.getElementById('descricao').value,
-            valor: parseFloat(document.getElementById('valor').value),
-            dataTransacao: document.getElementById('data').value,
-            categoria: document.getElementById('categoria').value,
-            tipo: document.getElementById('tipo').value,
-            metodoPagamento: document.getElementById('metodoPagamento').value
-        };
-
-        try {
-            const resposta = await fetch('http://127.0.0.1:8080/api/transacoes/criar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(transacaoDTO)
-            });
-
-            if (resposta.status === 201) {
-                alert('Transação criada com sucesso!');
-                modal.style.display = 'none';
-                formTransacao.reset();
-                
-                
-                carregarTransacoes();
-                
-            } else {
-                alert('Erro ao salvar a transação. Verifique os dados.');
-            }
-        } catch (erro) {
-            console.error('Erro:', erro);
-            alert('Falha ao comunicar com o servidor.');
-        }
-    });
-
-    // Função para buscar e renderizar as transações na tabela
-  async function carregarTransacoes() {
-        const token = localStorage.getItem('token');
-        const corpoTabela = document.getElementById('corpo-tabela');
-
-        try {
-            const resposta = await fetch('http://127.0.0.1:8080/api/transacoes/usuario', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (resposta.ok) {
-                const transacoes = await resposta.json();
-                corpoTabela.innerHTML = ''; 
-
-                // Variáveis para calcular os cards
-                let totalReceitas = 0;
-                let totalDespesas = 0;
-
-                if (transacoes.length === 0) {
-                    corpoTabela.innerHTML = `<tr><td colspan="6" style="text-align: center;">Nenhuma transação encontrada neste mês.</td></tr>`;
-                    
-                    document.getElementById('valor-receitas').innerText = "R$ 0,00";
-                    document.getElementById('valor-despesas').innerText = "R$ 0,00";
-                } else {
-                    
-                    transacoes.forEach(t => {
-                        if (t.tipo === 'RECEITA') {
-                            totalReceitas += t.valor;
-                        } else if (t.tipo === 'DESPESA') {
-                            totalDespesas += t.valor;
-                        }
-
-                        // Cria a linha da tabela
-                        const tr = document.createElement('tr');
-                        
-                        let dataFormatada = "";
-                        if(t.dataTransacao) {
-                            const partesData = t.dataTransacao.split('-');
-                            dataFormatada = `${partesData[2]}/${partesData[1]}/${partesData[0]}`;
-                        }
-
-                        const valorFormatado = t.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                        
-                        // Define a cor do texto na tabela
-                        const classeCor = t.tipo === 'RECEITA' ? 'texto-positivo' : 'texto-negativo';
-
-                        tr.innerHTML = `
-                            <td>${dataFormatada}</td>
-                            <td>${t.descricao}</td>
-                            <td>${t.categoria}</td>
-                            <td>${t.metodoPagamento}</td>
-                            <td class="${classeCor}">${valorFormatado}</td>
-                            <td>
-                                <button class="btn-cancelar" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; color: #e74c3c; border-color: #e74c3c;">Excluir</button>
-                            </td>
-                        `;
-                        corpoTabela.appendChild(tr);
-                    });
-
-                    // Insere os valores calculados nos Cards da tela
-                    document.getElementById('valor-receitas').innerText = totalReceitas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                    document.getElementById('valor-despesas').innerText = totalDespesas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                }
-
-                // 2. Busca o Saldo Total direto da sua API
-                const respostaBalanco = await fetch('http://127.0.0.1:8080/api/transacoes/balanco', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                if (respostaBalanco.ok) {
-                    const saldoTotal = await respostaBalanco.json();
-                    document.getElementById('valor-saldo').innerText = saldoTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                }
-
-            } else {
-                corpoTabela.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red;">Erro ao buscar dados. Tente novamente.</td></tr>`;
-            }
-        } catch (erro) {
-            console.error('Erro:', erro);
-            corpoTabela.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red;">Servidor offline.</td></tr>`;
-        }
+    if (formTransacao) {
+        formTransacao.addEventListener('submit', async (evento) => {
+            evento.preventDefault();
+            await salvarTransacao();
+        });
     }
 });
+
+function inicializarFiltrosDatas() {
+    const selectMes = document.getElementById('filtro-mes');
+    const selectAno = document.getElementById('filtro-ano');
+    
+    if (!selectMes || !selectAno) return;
+
+    const dataAtual = new Date();
+    selectMes.value = dataAtual.getMonth() + 1; 
+
+    const anoAtual = dataAtual.getFullYear();
+    selectAno.innerHTML = ''; 
+    
+    // Agora o sistema volta 10 anos no passado automaticamente!
+    const anoInicial = anoAtual - 10; 
+
+    for (let ano = anoInicial; ano <= anoAtual + 1; ano++) {
+        const option = document.createElement('option');
+        option.value = ano;
+        option.textContent = ano;
+        if (ano === anoAtual) option.selected = true;
+        selectAno.appendChild(option);
+    }
+}
+
+async function buscarTransacoesPorFiltro() {
+    const token = localStorage.getItem('token');
+    const mes = document.getElementById('filtro-mes').value;
+    const ano = document.getElementById('filtro-ano').value;
+    const corpoTabela = document.getElementById('corpo-tabela');
+
+    corpoTabela.innerHTML = `<tr><td colspan="6" style="text-align: center;">Buscando transações...</td></tr>`;
+
+    try {
+        const resposta = await fetch(`http://127.0.0.1:8080/api/transacoes/filtro?mes=${mes}&ano=${ano}`, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (resposta.ok) {
+            const transacoes = await resposta.json();
+            renderizarTabela(transacoes);
+            atualizarCardsVisaoGeral(transacoes);
+        } else {
+            corpoTabela.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red;">Erro ao buscar dados do mês.</td></tr>`;
+        }
+    } catch (erro) {
+        console.error('Erro:', erro);
+        corpoTabela.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red;">Servidor offline.</td></tr>`;
+    }
+}
+
+function renderizarTabela(transacoes) {
+    const corpoTabela = document.getElementById('corpo-tabela');
+    corpoTabela.innerHTML = ''; 
+
+    if (transacoes.length === 0) {
+        corpoTabela.innerHTML = `<tr><td colspan="6" style="text-align: center;">Nenhuma transação neste período.</td></tr>`;
+        return;
+    }
+
+    transacoes.forEach(t => {
+        const tr = document.createElement('tr');
+        
+        let dataFormatada = "";
+        if(t.dataTransacao) {
+            const partes = t.dataTransacao.split('-');
+            dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
+        }
+
+        const valorFormatado = t.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        const classeCor = t.tipo === 'RECEITA' ? 'texto-positivo' : 'texto-negativo';
+
+        tr.innerHTML = `
+            <td>${dataFormatada}</td>
+            <td>${t.descricao}</td>
+            <td>${t.categoria}</td>
+            <td>${t.metodoPagamento}</td>
+            <td class="${classeCor}">${valorFormatado}</td>
+            <td>
+                <button class="btn-cancelar" onclick="deletarTransacao('${t.id}')" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; color: #ff4d4d; border: 1px solid #ff4d4d; background: transparent; cursor: pointer; border-radius: 4px; transition: all 0.3s;">Excluir</button>
+            </td>
+        `;
+        corpoTabela.appendChild(tr);
+    });
+}
+
+function atualizarCardsVisaoGeral(transacoes) {
+    let totalReceitas = 0;
+    let totalDespesas = 0;
+
+    transacoes.forEach(t => {
+        if (t.tipo === 'RECEITA') totalReceitas += t.valor;
+        else if (t.tipo === 'DESPESA') totalDespesas += t.valor;
+    });
+
+    // Calcula o Balanço apenas daquele mês (Receitas - Despesas)
+    const saldoDoMes = totalReceitas - totalDespesas;
+
+    document.getElementById('valor-receitas').innerText = totalReceitas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    document.getElementById('valor-despesas').innerText = totalDespesas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    
+    // Injeta o valor no 3º card
+    const cardSaldo = document.getElementById('valor-saldo');
+    cardSaldo.innerText = saldoDoMes.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    if (saldoDoMes < 0) {
+        cardSaldo.style.color = '#ff4d4d';
+        cardSaldo.style.textShadow = '0 0 8px rgba(255, 77, 77, 0.4)';
+    } else {
+        cardSaldo.style.color = '#00e5ff';
+        cardSaldo.style.textShadow = '0 0 8px rgba(0, 229, 255, 0.4)';
+    }
+}
+
+
+async function salvarTransacao() {
+    const token = localStorage.getItem('token'); 
+    const modal = document.getElementById('modal-transacao');
+    const formTransacao = document.getElementById('form-transacao');
+
+    const transacaoDTO = {
+        descricao: document.getElementById('descricao').value,
+        valor: parseFloat(document.getElementById('valor').value),
+        dataTransacao: document.getElementById('data').value,
+        categoria: document.getElementById('categoria').value,
+        tipo: document.getElementById('tipo').value,
+        metodoPagamento: document.getElementById('metodoPagamento').value
+    };
+
+    try {
+        const resposta = await fetch('http://127.0.0.1:8080/api/transacoes/criar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(transacaoDTO)
+        });
+
+        if (resposta.status === 201) {
+            modal.style.display = 'none';
+            formTransacao.reset();
+            
+            buscarTransacoesPorFiltro();
+        } else {
+            alert('Erro ao salvar a transação. Verifique os dados.');
+        }
+    } catch (erro) {
+        console.error('Erro:', erro);
+        alert('Falha ao comunicar com o servidor.');
+    }
+}
+
+async function deletarTransacao(id) {
+    const confirmacao = window.confirm("Tem certeza que deseja excluir esta transação?");
+    if (!confirmacao) {
+        return; 
+    }
+
+    const token = localStorage.getItem('token');
+
+    try {
+        const resposta = await fetch(`http://127.0.0.1:8080/api/transacoes/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (resposta.ok) {
+            buscarTransacoesPorFiltro();
+        } else {
+            alert('Erro ao excluir a transação. Verifique as suas permissões.');
+        }
+    } catch (erro) {
+        console.error('Erro ao excluir:', erro);
+        alert('Falha ao comunicar com o servidor.');
+    }
+}
