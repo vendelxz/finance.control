@@ -17,7 +17,7 @@ formLogin.addEventListener('submit', async (evento) => {
         if (resposta.ok) {
             const dados = await resposta.json();
             localStorage.setItem('token', dados.token);
-            window.location.href = '/index.html'; 
+            window.location.href = '../index.html'; 
         } else {
             alert('Credenciais inválidas. Por favor, tente novamente.');
         }

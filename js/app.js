@@ -77,11 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const btnDashboard = document.getElementById('btn-dashboard');
     const btnTransacoes = document.getElementById('btn-transacoes');
-    const btnRelatorios = document.getElementById('btn-relatorios'); // Novo
+    const btnRelatorios = document.getElementById('btn-relatorios'); 
 
     const secaoDashboard = document.getElementById('secao-dashboard');
     const secaoTransacoes = document.getElementById('secao-transacoes');
-    const secaoRelatorios = document.getElementById('secao-relatorios'); // Novo
+    const secaoRelatorios = document.getElementById('secao-relatorios'); 
     
     const tituloPagina = document.getElementById('titulo-pagina');
 

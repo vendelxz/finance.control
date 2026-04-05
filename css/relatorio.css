@@ -72,3 +72,46 @@
     line-height: 1.5;
     margin-bottom: 2rem;
 }
+
+.neon-verde-feedback {
+    border: 2px solid #2ecc71 !important;
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.4) !important;
+}
+
+.neon-roxo-feedback {
+    border: 2px solid #b829ea !important;
+    box-shadow: 0 0 20px rgba(184, 41, 234, 0.4) !important;
+}
+
+.neon-erro-feedback {
+    border: 2px solid #ff4d4d !important;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.4) !important;
+}
+
+#feedback-mensagem {
+    margin-top: 1rem;
+    line-height: 1.6;
+    color: var(--cor-texto);
+}
+
+.neon-verde-feedback .btn-primario {
+    background: #2ecc71 !important;
+    border: none;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+}
+
+.neon-roxo-feedback .btn-primario {
+    background: #b829ea !important;
+    border: none;
+    box-shadow: 0 0 10px rgba(184, 41, 234, 0.5);
+}
+
+.neon-erro-feedback .btn-primario {
+    background: #ff4d4d !important;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+}
+
+.neon-verde-feedback h2 { color: #2ecc71 !important; text-shadow: 0 0 8px rgba(46, 204, 113, 0.4); }
+.neon-roxo-feedback h2 { color: #b829ea !important; text-shadow: 0 0 8px rgba(184, 41, 234, 0.4); }
+.neon-erro-feedback h2 { color: #ff4d4d !important; text-shadow: 0 0 8px rgba(255, 77, 77, 0.4); }

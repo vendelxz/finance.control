@@ -36,7 +36,7 @@ async function apiRequest(endpoint, options = {}) {
             
             if (!isAuthPage) {
                 localStorage.removeItem(API_CONFIG.TOKEN_KEY);
-                window.location.replace('/auth/login.html');
+                window.location.replace('../auth/login.html');
                 return;
             }
         }
