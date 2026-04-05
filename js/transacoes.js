@@ -43,7 +43,6 @@ function inicializarFiltrosDatas() {
     const anoAtual = dataAtual.getFullYear();
     selectAno.innerHTML = ''; 
     
-    // Agora o sistema volta 10 anos no passado automaticamente!
     const anoInicial = anoAtual - 10; 
 
     for (let ano = anoInicial; ano <= anoAtual + 1; ano++) {
@@ -56,7 +55,6 @@ function inicializarFiltrosDatas() {
 }
 
 async function buscarTransacoesPorFiltro() {
-    const token = localStorage.getItem('token');
     const mes = document.getElementById('filtro-mes').value;
     const ano = document.getElementById('filtro-ano').value;
     const corpoTabela = document.getElementById('corpo-tabela');
@@ -64,9 +62,8 @@ async function buscarTransacoesPorFiltro() {
     corpoTabela.innerHTML = `<tr><td colspan="6" style="text-align: center;">Buscando transações...</td></tr>`;
 
     try {
-        const resposta = await fetch(`http://127.0.0.1:8080/api/transacoes/filtro?mes=${mes}&ano=${ano}`, {
-            method: 'GET',
-            headers: { 'Authorization': `Bearer ${token}` }
+        const resposta = await apiRequest(`/transacoes/filtro?mes=${mes}&ano=${ano}`, {
+            method: 'GET'
         });
 
         if (resposta.ok) {
@@ -126,13 +123,11 @@ function atualizarCardsVisaoGeral(transacoes) {
         else if (t.tipo === 'DESPESA') totalDespesas += t.valor;
     });
 
-    // Calcula o Balanço apenas daquele mês (Receitas - Despesas)
     const saldoDoMes = totalReceitas - totalDespesas;
 
     document.getElementById('valor-receitas').innerText = totalReceitas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     document.getElementById('valor-despesas').innerText = totalDespesas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     
-    // Injeta o valor no 3º card
     const cardSaldo = document.getElementById('valor-saldo');
     cardSaldo.innerText = saldoDoMes.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
@@ -147,7 +142,6 @@ function atualizarCardsVisaoGeral(transacoes) {
 
 
 async function salvarTransacao() {
-    const token = localStorage.getItem('token'); 
     const modal = document.getElementById('modal-transacao');
     const formTransacao = document.getElementById('form-transacao');
 
@@ -161,12 +155,8 @@ async function salvarTransacao() {
     };
 
     try {
-        const resposta = await fetch('http://127.0.0.1:8080/api/transacoes/criar', {
+        const resposta = await apiRequest('/transacoes/criar', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
             body: JSON.stringify(transacaoDTO)
         });
 
@@ -190,14 +180,9 @@ async function deletarTransacao(id) {
         return; 
     }
 
-    const token = localStorage.getItem('token');
-
     try {
-        const resposta = await fetch(`http://127.0.0.1:8080/api/transacoes/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
+        const resposta = await apiRequest(`/transacoes/${id}`, {
+            method: 'DELETE'
         });
 
         if (resposta.ok) {
