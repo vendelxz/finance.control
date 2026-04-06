@@ -25,6 +25,52 @@
     font-size: 0.9rem;
 }
 
+.solicitar-conteiner {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cor-fundo); 
+}
+
+.solicitar-card {
+    background-color: white; /* Fundo padrão light */
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid var(--cor-borda);
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .solicitar-card {
+    background-color: var(--cor-cartao);
+    border: 1px solid #00e5ff; 
+    box-shadow: 0 0 15px rgba(184, 41, 234, 0.1), 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.solicitar-card h2 {
+    margin-bottom: 0.5rem;
+    color: var(--cor-primaria);
+}
+
+[data-theme="dark"] .solicitar-card h2 {
+    color: #e0e0e0;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.solicitar-card .input-group input {
+    background-color: white;
+    color: var(--cor-texto);
+}
+
+[data-theme="dark"] .solicitar-card .input-group input {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #fff;
+}
+
 .input-group {
     margin-bottom: 1.5rem;
 }
@@ -100,4 +146,9 @@
 
 [data-theme="dark"] .links-uteis a:hover {
     text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+.card-login.neon-roxo {
+    border: 1px solid #b829ea;
+    box-shadow: 0 0 15px rgba(184, 41, 234, 0.2);
 }

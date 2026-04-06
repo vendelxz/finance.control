@@ -20,7 +20,7 @@ body {
     color: var(--cor-texto);
 }
 
-body.anima-tema {
+body.anima-tema * {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
