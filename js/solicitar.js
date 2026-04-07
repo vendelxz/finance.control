@@ -41,8 +41,10 @@ document.getElementById('form-solicitar-recuperacao').addEventListener('submit',
     btn.disabled = true;
 
     try {
-        const resposta = await apiRequest(`/auth/esqueci-senha?email=${emailInput}`, {
-            method: 'POST'
+                const resposta = await apiRequest(`/auth/esqueci-senha`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: emailInput })
         });
 
         const emailMascarado = mascararEmail(emailInput);
