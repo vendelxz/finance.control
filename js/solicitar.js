@@ -31,6 +31,8 @@ function mascararEmail(email) {
     return `${visivelInicio}${asteriscos}${visivelFim}@${dominio}`;
 }
 
+let ContarTentativas = 0;
+
 document.getElementById('form-solicitar-recuperacao').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -56,6 +58,9 @@ document.getElementById('form-solicitar-recuperacao').addEventListener('submit',
                 `Se o endereço ${emailMascarado} estiver em nossa base, um link de recuperação chegará em instantes.`, 
                 "verde"
             );
+            ContarTentativas++;
+            ContarTentativasERedirecionar();
+           
         } else {
             exibirFeedback("Aviso", "Não foi possível processar a solicitação no momento.", "roxo");
         }
@@ -67,3 +72,12 @@ document.getElementById('form-solicitar-recuperacao').addEventListener('submit',
         btn.disabled = false;
     }
 });
+
+function ContarTentativasERedirecionar() {
+    if (ContarTentativas >= 3) {
+        exibirFeedback("Redirecionando", "Muitas tentativas. Você será redirecionado para o login.", "roxo");
+        
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 5000);
+    }}
