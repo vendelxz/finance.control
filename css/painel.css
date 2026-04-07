@@ -165,6 +165,26 @@
     box-shadow: 0 2px 4px rgba(0, 59, 87, 0.2);
 }
 
+.btn-azul-cadastrar {
+    padding: 1.1rem 2rem;
+    background: transparent;
+    color: #00e5ff; 
+    border: 2px solid #00e5ff;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(51, 175, 233, 0.2);
+}
+
+.btn-azul-cadastrar:hover {
+    background-color: #09a0b1;
+    color: white;
+    box-shadow: 0 0 20px rgba(41, 141, 234, 0.6), inset 0 0 10px rgba(0,0,0,0.2);
+    text-shadow: 0 0 5px rgba(255,255,255,0.8);
+}
+
 .tabela-transacoes {
     width: 100%;
     border-collapse: collapse;
@@ -223,23 +243,28 @@
 }
 
 .btn-cancelar {
-    background: none;
+    background: #e74c3c;
     border: 1px solid var(--cor-borda);
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-    color: var(--cor-texto-claro);
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(230, 18, 18, 0.2);
+    
 }
 
 .btn-cancelar:hover {
-    background-color: #f4f4f4;
+    background-color: #ff0606;
+     box-shadow: 0 0 20px rgba(231, 8, 45, 0.6), inset 0 0 10px rgba(0,0,0,0.2);
+     text-shadow: 0 0 5px rgba(236, 13, 13, 0.8);
 }
 
 .tabela-transacoes td {
-    font-size: 1.05rem; /* Aumenta um bocadinho o tamanho base */
-    font-weight: 500;   /* Dá mais destaque à fonte */
-    color: #222222;     /* Escurece o texto */
+    font-size: 1.05rem;
+    font-weight: 500;   
+    color: #222222;     
 }
 
 .texto-positivo {

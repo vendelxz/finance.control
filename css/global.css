@@ -20,7 +20,7 @@ body {
     color: var(--cor-texto);
 }
 
-body.anima-tema {
+body.anima-tema * {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -82,6 +82,10 @@ body.anima-tema {
 
 .btn-tema:hover {
     background-color: rgba(0, 0, 0, 0.05);
+
+    box-shadow: 0 0 15px #00f7fff6, 0 0 30px rgb(0, 192, 240);
+    text-shadow: 0 0 4px #00f7fff6; /* Brilho na letra */
+    transform: translateY(-2px); 
 }
 
 [data-theme="dark"] .btn-tema:hover {
@@ -164,9 +168,6 @@ body.anima-tema {
     box-shadow: 0 2px 4px rgba(0, 59, 87, 0.2);
 }
 
-/* =========================================
-   ÁREA DE FILTROS (MÊS E ANO)
-   ========================================= */
 .filtros-container {
     display: flex;
     gap: 1.5rem;
@@ -248,4 +249,46 @@ body.anima-tema {
 [data-theme="dark"] .neon-table tbody tr:hover {
     background-color: rgba(184, 41, 234, 0.1); 
     box-shadow: inset 0 0 10px rgba(184, 41, 234, 0.2);
+}
+
+body[data-theme="dark"] {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+/* --- Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    margin-bottom: 1.5rem;
+    color: var(--cor-primaria);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }

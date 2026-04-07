@@ -3,52 +3,22 @@ if (localStorage.getItem('tema') === 'dark') {
 }
 
 const token = localStorage.getItem('token');
-const isLoginPage = window.location.pathname.includes('login.html');
-const isRegistroPage = window.location.pathname.includes('registro.html'); 
+const pathAtual = window.location.pathname;
 
-if ((!token || token === 'null' || token === 'undefined' || token === '') && !isLoginPage && !isRegistroPage) {
+const isLoginPage = pathAtual.includes('login.html');
+const isRegistroPage = pathAtual.includes('registro.html'); 
+const isRecuperarPage = pathAtual.includes("solicitar-recuperacao.html") || pathAtual.includes("redefinir-senha.html");
+
+if ((!token || token === 'null' || token === '') && !isLoginPage && !isRegistroPage && !isRecuperarPage) {
     window.location.replace('auth/login.html'); 
 }
 
-if (token && token !== 'null' && token !== 'undefined' && token !== '' && isLoginPage) {
+if (token && token !== 'null' && token !== '' && isLoginPage) {
     window.location.replace('../index.html');
 }
 
-//DASHBOARD
 document.addEventListener('DOMContentLoaded', () => {
     
-    const btnDashboard = document.getElementById('btn-dashboard');
-    const btnTransacoes = document.getElementById('btn-transacoes');
-    const secaoDashboard = document.getElementById('secao-dashboard');
-    const secaoTransacoes = document.getElementById('secao-transacoes');
-    const tituloPagina = document.getElementById('titulo-pagina');
-
-    if (btnDashboard && btnTransacoes) {
-        btnDashboard.addEventListener('click', () => {
-            btnDashboard.classList.add('ativo');
-            btnTransacoes.classList.remove('ativo');
-            secaoDashboard.classList.add('ativa');
-            secaoTransacoes.classList.remove('ativa');
-            tituloPagina.innerText = 'Visão Geral';
-        });
-
-        btnTransacoes.addEventListener('click', () => {
-            btnTransacoes.classList.add('ativo');
-            btnDashboard.classList.remove('ativo');
-            secaoTransacoes.classList.add('ativa');
-            secaoDashboard.classList.remove('ativa');
-            tituloPagina.innerText = 'Transações';
-        });
-    }
-
-    const btnLogout = document.getElementById('btn-logout');
-    if (btnLogout) {
-        btnLogout.addEventListener('click', () => {
-            localStorage.removeItem('token'); 
-            window.location.replace('auth/login.html'); 
-        });
-    }
-
     const btnTema = document.getElementById('btn-tema');
     if (btnTema) {
         if (localStorage.getItem('tema') === 'dark') {
@@ -57,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         btnTema.addEventListener('click', () => {
             document.body.classList.add('anima-tema');
-
             const temaEscuroAtivo = document.body.getAttribute('data-theme') === 'dark';
 
             if (temaEscuroAtivo) {
@@ -71,10 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
 
-//Relatórios PDF
-document.addEventListener('DOMContentLoaded', () => {
     const btnDashboard = document.getElementById('btn-dashboard');
     const btnTransacoes = document.getElementById('btn-transacoes');
     const btnRelatorios = document.getElementById('btn-relatorios'); 
@@ -82,21 +48,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const secaoDashboard = document.getElementById('secao-dashboard');
     const secaoTransacoes = document.getElementById('secao-transacoes');
     const secaoRelatorios = document.getElementById('secao-relatorios'); 
-    
     const tituloPagina = document.getElementById('titulo-pagina');
 
     function trocarSecao(botaoAtivo, secaoAtiva, titulo) {
+        if (!botaoAtivo || !secaoAtiva) return;
 
         [btnDashboard, btnTransacoes, btnRelatorios].forEach(btn => btn?.classList.remove('ativo'));
         [secaoDashboard, secaoTransacoes, secaoRelatorios].forEach(sec => sec?.classList.remove('ativa'));
 
         botaoAtivo.classList.add('ativo');
         secaoAtiva.classList.add('ativa');
-        tituloPagina.innerText = titulo;
+        if (tituloPagina) tituloPagina.innerText = titulo;
     }
 
     if (btnDashboard) btnDashboard.addEventListener('click', () => trocarSecao(btnDashboard, secaoDashboard, 'Visão Geral'));
     if (btnTransacoes) btnTransacoes.addEventListener('click', () => trocarSecao(btnTransacoes, secaoTransacoes, 'Transações'));
     if (btnRelatorios) btnRelatorios.addEventListener('click', () => trocarSecao(btnRelatorios, secaoRelatorios, 'Relatórios'));
 
+    const btnLogout = document.getElementById('btn-logout');
+    if (btnLogout) {
+        btnLogout.addEventListener('click', () => {
+            localStorage.removeItem('token'); 
+            window.location.replace('auth/login.html'); 
+        });
+    }
 });

@@ -2,7 +2,7 @@
 
 Sistema web de controle financeiro pessoal com cadastro de receitas e despesas, balanceamento mensal e geração de relatórios em PDF.
 
-> ⚠️ Release Beta — funcionalidades em desenvolvimento ativo.
+> ⚠️ Release Beta  - Funcional 
 
 ## Funcionalidades
 
@@ -11,7 +11,7 @@ Sistema web de controle financeiro pessoal com cadastro de receitas e despesas, 
 - [x] Balanceamento mensal
 - [x] Envio de e-mails via SMTP
 - [x] Geração de relatórios em PDF 
-- [ ] Recuperação de senha *(em desenvolvimento)*
+- [x] Recuperação de senha 
 
 ## Stack
 
@@ -26,7 +26,8 @@ Sistema web de controle financeiro pessoal com cadastro de receitas e despesas, 
 
 ## Repositórios
 
-- 🖥️ Frontend — *este repositório*
+- 🖥️ Frontend (Vanilla JS) — *este repositório*
+- 🖥️ Frontend (React) — [controlefinanceiro.react](https://github.com/vendelxz/controlefinanceiro.react)
 - ⚙️ Backend — [api-controle-financeiro](https://github.com/vendelxz/api-controle-financeiro)
 
 ## Acesso

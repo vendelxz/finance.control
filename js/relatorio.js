@@ -29,7 +29,7 @@ function inicializarLogicaRelatorios() {
 
     if (selectAno && selectAno.options.length === 0) {
         const anoAtual = new Date().getFullYear();
-        for (let i = anoAtual - 5; i <= anoAtual + 1; i++) {
+        for (let i = anoAtual - 10; i <= anoAtual + 1; i++) {
             const opt = document.createElement('option');
             opt.value = i;
             opt.textContent = i;
