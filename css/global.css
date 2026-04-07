@@ -82,6 +82,10 @@ body.anima-tema * {
 
 .btn-tema:hover {
     background-color: rgba(0, 0, 0, 0.05);
+
+    box-shadow: 0 0 15px #00f7fff6, 0 0 30px rgb(0, 192, 240);
+    text-shadow: 0 0 4px #00f7fff6; /* Brilho na letra */
+    transform: translateY(-2px); 
 }
 
 [data-theme="dark"] .btn-tema:hover {

@@ -31,7 +31,7 @@ function mascararEmail(email) {
     return `${visivelInicio}${asteriscos}${visivelFim}@${dominio}`;
 }
 
-let ContarTentativas = 0;
+ let ContarTentativas = 0;
 
 document.getElementById('form-solicitar-recuperacao').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -51,15 +51,19 @@ document.getElementById('form-solicitar-recuperacao').addEventListener('submit',
 
         const emailMascarado = mascararEmail(emailInput);
 
+
         // Mesmo que o usuário não exista
-        if (resposta.ok || resposta.status === 200) {
+        if (resposta.ok || resposta.status === 200 ) {
+
+            ContarTentativas++;
             exibirFeedback(
                 "E-mail Enviado", 
                 `Se o endereço ${emailMascarado} estiver em nossa base, um link de recuperação chegará em instantes.`, 
                 "verde"
             );
-            ContarTentativas++;
-            ContarTentativasERedirecionar();
+            
+            //Assim que aparece o feedback precisa redirecionar o usuário...
+            ContarTentativasERedirecionar(resposta, ContarTentativas);
            
         } else {
             exibirFeedback("Aviso", "Não foi possível processar a solicitação no momento.", "roxo");
@@ -73,11 +77,23 @@ document.getElementById('form-solicitar-recuperacao').addEventListener('submit',
     }
 });
 
-function ContarTentativasERedirecionar() {
-    if (ContarTentativas >= 3) {
-        exibirFeedback("Redirecionando", "Muitas tentativas. Você será redirecionado para o login.", "roxo");
-        
-        setTimeout(() => {
+function ContarTentativasERedirecionar(status, ContarTentativas) {
+    if(ContarTentativas >= 3){
+       exibirFeedback("Aviso", "Você fez muitas tentativas e será redirecionado.", "roxo")
+        setTimeout ( () => {
             window.location.href = "login.html";
-        }, 5000);
-    }}
+        }, 3000);
+        return;
+    }
+
+    if(status === 200){
+        
+        setTimeout (() => {
+            window.location.href = "login.html";
+        }, 4000);
+    }
+}
+
+
+
+  
