@@ -1,6 +1,6 @@
 
 const API_CONFIG = {
-    BASE_URL: 'http://3.211.39.141/api',
+    BASE_URL: 'https://controlefinanceirovendelxz.duckdns.org/api',
     TOKEN_KEY: 'token'
 };
 
