@@ -1,6 +1,6 @@
 
 const API_CONFIG = {
-    BASE_URL: 'http://127.0.0.1:8080/api',
+    BASE_URL: 'http://3.211.39.141:8080/api',
     TOKEN_KEY: 'token'
 };
 
