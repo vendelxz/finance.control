@@ -10,7 +10,7 @@ const API_CONFIG = {
  * @param {object} options  
  */
 
-async function apiRequest(endpoint, options = {}) {
+ export async function apiRequest(endpoint, options = {}) {
     const token = localStorage.getItem(API_CONFIG.TOKEN_KEY);
     
     const headers = {

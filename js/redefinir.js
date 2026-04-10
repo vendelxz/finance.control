@@ -1,3 +1,5 @@
+import { apiRequest } from "./api.js";
+
 function togglePassword(inputId, button) {
     const input = document.getElementById(inputId);
     
