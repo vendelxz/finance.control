@@ -1,3 +1,6 @@
+import { apiRequest } from "./api.js";
+
+
 function exibirFeedback(titulo, mensagem, tipo) {
     const modal = document.getElementById('modal-feedback');
     const content = document.getElementById('content-feedback');

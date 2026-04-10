@@ -1,3 +1,5 @@
+import { apiRequest } from "./api.js";
+
 const formRegistro = document.getElementById('form-registro');
 
 formRegistro.addEventListener('submit', async (event) => {

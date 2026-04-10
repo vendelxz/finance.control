@@ -1,3 +1,5 @@
+import { apiRequest } from "./api.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     inicializarFiltrosDatas();
     buscarTransacoesPorFiltro();

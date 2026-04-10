@@ -1,3 +1,5 @@
+import { apiRequest } from "./api.js";
+
 const formLogin = document.getElementById('form-login');
 
 formLogin.addEventListener('submit', async (evento) => {

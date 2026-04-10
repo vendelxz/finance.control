@@ -1,6 +1,6 @@
 
 const API_CONFIG = {
-    BASE_URL: 'http://127.0.0.1:8080/api',
+    BASE_URL: 'https://controlefinanceirovendelxz.duckdns.org/api',
     TOKEN_KEY: 'token'
 };
 
@@ -10,7 +10,7 @@ const API_CONFIG = {
  * @param {object} options  
  */
 
-async function apiRequest(endpoint, options = {}) {
+ export async function apiRequest(endpoint, options = {}) {
     const token = localStorage.getItem(API_CONFIG.TOKEN_KEY);
     
     const headers = {
