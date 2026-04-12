@@ -47,3 +47,12 @@ const API_CONFIG = {
         throw erro;
     }
 }
+
+export async function carregarModalFeedback(metodo){
+if(metodo ==null){
+    return;
+}
+//Para o HTML consegui puxar e exibir o modal funcional...
+window[metodo.name] = metodo;
+
+}
