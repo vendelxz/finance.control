@@ -197,3 +197,5 @@ async function deletarTransacao(id) {
         alert('Falha ao comunicar com o servidor.');
     }
 }
+//Para referenciar e o HTML conseguir puxar...
+window.deletarTransacao = deletarTransacao;
