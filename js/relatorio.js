@@ -1,5 +1,9 @@
 import { apiRequest } from "./api.js";
+import { carregarModalFeedback } from "./api.js";
 
+//Exibição de todos os métodos...
+carregarModalFeedback(fecharFeedback);
+carregarModalFeedback(exibirFeedback);
 
 function exibirFeedback(titulo, mensagem, tipo) {
     const modal = document.getElementById('modal-feedback');
