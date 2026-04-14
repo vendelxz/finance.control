@@ -1,4 +1,9 @@
 import { apiRequest } from "./api.js";
+import { carregarModalFeedback} from "./api.js";
+
+carregarModalFeedback(exibirFeedback);
+carregarModalFeedback(fecharFeedback);
+
 
 function togglePassword(inputId, button) {
     const input = document.getElementById(inputId);
@@ -11,6 +16,7 @@ function togglePassword(inputId, button) {
         button.innerText = "X"; // Ícone de mostrar
     }
 }
+window.tooglePassword = tooglePassword;
 
 function exibirFeedback(titulo, mensagem, tipo) {
     const modal = document.getElementById('modal-feedback');
