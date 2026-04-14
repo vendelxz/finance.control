@@ -1,5 +1,5 @@
 import { apiRequest } from "./api.js";
-import { carregarModalFeedback} from './api.js'
+import { carregarModalFeedback} from "./api.js";
 
 carregarModalFeedback(exibirFeedback);
 carregarModalFeedback(fecharFeedback);
