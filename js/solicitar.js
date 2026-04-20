@@ -45,7 +45,7 @@ document.getElementById('form-solicitar-recuperacao').addEventListener('submit',
     
     const emailInput = document.getElementById('email').value;
     const btn = document.getElementById('btn-enviar');
-    const origin = window.location.origin;
+    const origem = window.location.origin;
     
     btn.innerText = "⏳ Processando...";
     btn.disabled = true;
@@ -54,7 +54,7 @@ document.getElementById('form-solicitar-recuperacao').addEventListener('submit',
                 const resposta = await apiRequest(`/auth/esqueci-senha`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: emailInput , origin})
+            body: JSON.stringify({ email: emailInput , origem: origem })
         });
 
         const emailMascarado = mascararEmail(emailInput);
