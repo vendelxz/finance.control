@@ -1,9 +1,10 @@
 import { apiRequest } from "./api.js";
-import { carregarModalFeedback} from "./api.js";
+import { carregarModalFeedback } from "./api.js";
 
+//Recuperar para o HTML
+window.togglePassword = togglePassword;
 carregarModalFeedback(exibirFeedback);
 carregarModalFeedback(fecharFeedback);
-
 
 function togglePassword(inputId, button) {
     const input = document.getElementById(inputId);
