@@ -36,7 +36,10 @@ const API_CONFIG = {
             
             if (!isAuthPage) {
                 localStorage.removeItem(API_CONFIG.TOKEN_KEY);
-                window.location.replace('../auth/login.html');
+                //ToDo: Ajeitar isso, está redirecionando para vendelxz.github.io/auth/login.html
+                //O endpoint correto seria: vendelxz.github.io/finance.control/auth/login.html
+                //window.location.replace('../auth/login.html');
+                window.location.replace('../finance.control/auth/login.html');
                 return;
             }
         }
